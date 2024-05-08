@@ -1,0 +1,2 @@
+qemu-system-x86_64 -cdrom archlinux.iso -enable-kvm -boot menu=on -drive file=arch_image,format=raw -m 5G -cpu host -smp 4 -vga virtio -display sdl,gl=on
+

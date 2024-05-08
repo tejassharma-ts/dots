@@ -1,0 +1,15 @@
+#!/bin/sh
+
+touchpadId=$(xinput list | grep -i "touchpad" | awk -F= '/id=/ {print $2}' | awk '{print $1}')
+isEnable=$(xinput list-props "$touchpadId" | grep "Device Enabled" | awk '{print $NF}')
+
+# check if the touchpad is enable 
+if [ "$isEnable" = 0 ]
+then
+	$(xinput enable "$touchpadId")
+	dunstify "Touchpad toggeling" "You're touchpad is now Enabled" -r 144
+
+else
+	$(xinput disable "$touchpadId")
+	dunstify "Touchpad toggeling" "You're touchpad is now Disabled" -r 144
+fi

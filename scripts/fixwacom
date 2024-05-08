@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+WACOM_ID=$(xsetwacom list devices | grep -E 'Tablet [s]' | awk '{print $10}')
+
+if [[ -n $WACOM_ID ]] ;
+then
+    if $(xsetwacom set $WACOM_ID Rotate cw); then
+        notify-send "Wacom Driver" "Your shitty wacom tablet should now work properly" 
+    else
+        notify-send "Wacom Driver" "Something wrong happened while fixing your shitty tablet" -u critical
+    fi
+else
+        notify-send "Wacom Driver" "Your shitty wacom tablet is not in the contact with kernel " -u critical
+fi

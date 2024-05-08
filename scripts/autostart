@@ -1,0 +1,49 @@
+#! /bin/sh
+
+
+# utilitites
+is_program_exist() {
+    if command -v "$1" >/dev/null 2>&1; then
+        return 0
+    fi
+	return 1
+}
+
+is_program_running() {
+	if pgrep -x "$1" > /dev/null; then
+		return 0
+	fi
+	return 1
+}
+
+exec_once() {
+	local PROGRAM="$1"
+	shift # Remove the first argument and shift the list
+	if is_program_exist "$PROGRAM"; then
+		if is_program_running "$PROGRAM"; then 
+			return 0
+		fi
+		killall -q "$PROGRAM"
+		pgrep -x "$PROGRAM" > /dev/null || "$PROGRAM" "$@" &
+	fi
+}
+
+# set default cursor
+# xsetroot -cursor_name left_ptr
+
+# start sxhkd
+# exec_once "sxhkd" &
+
+# launch polybar
+# exec_once "polybar" -r &
+~/.config/polybar/launch_polybar.sh &
+
+# launch picom
+exec_once "picom"  &
+
+# set a wallpaper
+# exec_once "feh" --bg-fill ~/wallpapers/anime_girl.png &
+~/.fehbg &
+
+exec_once "dunst" &
+

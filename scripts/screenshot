@@ -1,0 +1,18 @@
+#! /bin/sh
+output='/home/verissimus/pictures/screenshots/%Y-%m-%d-%T-screenshot.png'
+
+saved_dir="/home/verissimu/pictures/screenshots"
+case "$1" in
+	"select") scrot "$output" --select --line mode=edge || exit ;;
+	"window") scrot "$output" --focused --border || exit ;;
+    "sstoclipboard") maim -s | xclip -selection clipboard -t image/png -i || exit;;
+	*) scrot "$output" || exit ;;
+esac
+
+
+if [ "$1" != "sstoclipboard" ]
+then
+    notify-send "Screenshot taken which has been saved in "$saved_dir""
+else 
+    notify-send "Maim cli program" "The screenshot is taken and is asserted into your clipboard"
+fi

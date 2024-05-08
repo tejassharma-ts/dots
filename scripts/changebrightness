@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Use brillo to logarithmically adjust laptop screen brightness
+# and send a notification displaying the current brightness level after.
+
+send_notification() {
+	brightness=$(printf "%.0f\n" "$(brillo -G)")
+}
+
+case $1 in
+up)
+	brillo -A 1 -q -u 150000
+	send_notification "$1"
+	;;
+down)
+	brillo -U 1 -q -u 150000
+	send_notification "$1"
+	;;
+esac

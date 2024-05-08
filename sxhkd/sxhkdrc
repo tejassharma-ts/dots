@@ -1,0 +1,225 @@
+#
+# wm independent hotkeys
+#
+
+# Fixing wacom tablet by rotating it clock wise
+control + alt + a
+    fixwacom
+
+# open browswer
+XF86Search
+    firefox www.youtube.com 
+
+# open whatsapp web
+super + alt + w
+    firefox https://web.whatsapp.com/
+
+# open file explorer
+XF86Explorer
+    thunar
+
+# open figma with nvidia drivers
+super + alt + f
+    prime-run firefox www.figma.com &
+
+super + alt + c
+    google-chrome-stable & 
+
+# Toggle output sinks
+XF86Tools
+    togglesink
+
+XF86ScreenSaver
+	xset dpms force off
+
+super + Return 
+	prime-run alacritty
+
+super + shift + e
+	rofi -show emoji
+
+super + shift + n
+	rofi-nerdfonts
+
+XF86Calculator
+	rofi -show calc
+	
+# Get Power Menu
+super + shift + q
+	powermenu
+
+# printscreen
+@Print
+	screenshot
+
+shift + @Print
+	screenshot select
+
+control + @Print
+	screenshot window
+
+# to save ss to clipboard
+control + shift + @Print 
+    screenshot sstoclipboard
+
+# brightness keys
+XF86MonBrightnessUp
+	changebrightness up
+
+XF86MonBrightnessDown
+	changebrightness down
+
+control + shift + k
+    changebrightness up
+
+control + shift + j
+    changebrightness down
+
+# media keys
+XF86AudioPrev
+	playerctl previous
+
+XF86AudioNext
+	playerctl next
+
+XF86AudioPlay
+	playerctl play-pause
+
+# volumde keys
+XF86AudioRaiseVolume
+	changevolume up
+
+XF86AudioLowerVolume
+	changevolume down
+
+XF86AudioMute
+	changevolume mute
+
+# lockscreen
+# super + x
+# 	betterlockscreen -l
+
+# program launcher
+super + m
+	rofi -terminal alacritty -show drun -icon-theme "Papirus" -show-icons
+
+# Reload polybar
+super + Escape
+	$HOME/.config/polybar/launch.sh
+
+# Reload sxhkd
+super + shift + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + w
+	bspc node -{c,k}
+
+#
+#
+# state/flags
+#
+
+# alternate between the tiled and monocle layout
+super + p 
+	bspc desktop -l next
+
+super + f
+	bspc node focused.tiled -t fullscreen
+
+super + t
+	bspc node focused.fullscreen -t tiled
+
+super + shift + f
+	bspc node focused.tiled -t floating
+
+super + shift + t
+	bspc node focused.floating -t tiled
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the next/previous window in the current desktop
+super + u
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# notifications
+ctrl + space
+  dunstctl close
+
+ctrl + shift + space
+  dunstctl close-all
+
+ctrl + shift + period
+  dunstctl context
+
+ctrl + grave
+  dunstctl history-pop
+
+ctrl + alt + x
+	xkill
+
+super + Return
+	$TERMINAL
+
+super + {g, o, v, s}
+	{prime-run gimp, obs, olive-editor, spotify}
+
+super + {b, e, m, n}
+	$TERMINAL -e {newsboat, lf-ueberzug, neomutt, nvim documents/vimwiki/index.md}
+
+# Show help
+super + slash 
+	~/.config/sxhkd/scripts/sxhkd-help
+Menu
+	xte 'mouseclick 3'
+
+# Toggle polybar
+control + shift + p
+	~/.config/sxhkd/scripts/polybar-hide
+
+# Toggle bspwm gaps
+control + shift + g
+	~/.config/sxhkd/scripts/bspwm-gap --toggle
+

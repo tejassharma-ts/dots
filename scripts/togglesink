@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Use to toggle between headphones output sinks and builtin output sinks
+
+HEADPHONE_SINK_ID=$(pactl list short sinks | grep usb | awk '{print $1}')
+SPEAKERS_SINK_ID=$(pactl list short sinks | grep pci | awk '{print $1}')
+
+DEFAULT_SINK_ID=$(pactl list short sinks | grep RUNNING | awk {'print $1'})
+
+
+if [[ -z "$DEFAULT_SINK_ID" ]]; then
+        notify-send "Pactl Driver Sink Output" "There is no client running on at this moment" -u low
+        exit 0
+fi
+
+if [[ $HEADPHONE_SINK_ID == $DEFAULT_SINK_ID ]];
+then
+    if $(pactl set-default-sink $SPEAKERS_SINK_ID); then
+        notify-send "Pactl Driver Sink Output" "You're now rocking with your Builtin Speakers"
+    else
+        notify-send "Pactl Driver Sink Toggle" "Some error has occured while switching to Builtin Speakers" -r 9991 -u critical 
+    fi
+
+else
+    if $(pactl set-default-sink $HEADPHONE_SINK_ID) ; then
+        notify-send "Pactl Driver Sink Output" "You're now rocking with your Headphones"
+    else
+        notify-send "Pactl Driver Sink Toggle" "Some error has occured while switching to Headphones" -r 9991 -u critical 
+    fi
+fi
+
+

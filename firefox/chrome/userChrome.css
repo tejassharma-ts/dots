@@ -1297,8 +1297,8 @@ toolbar #new-tab-button:not([disabled="true"]):not([checked]):not([open]):not( :
     }
 
     #navigator-toolbox:not([inFullscreen]) #TabsToolbar .titlebar-buttonbox-container {
-        visibility: visible !important;
-        display: flex !important;
+        visibility: hidden !important;
+        display: none !important;
         position: absolute !important;
         top: 1px;
         right: 0;

@@ -17,7 +17,7 @@
     text_icon_padding = 15
     frame_width = 1
     corner_radius = 0
-    frame_color = "#26233a"
+    frame_color = "#ebdbb2"
     separator_color= frame
     sort = yes
     idle_threshold = 120
@@ -58,17 +58,17 @@ appname=Spotify
 skip_display=true
 
 [urgency_low]
-    background = "#eb6f92"
-    foreground = "#1f1d2e"
+    background = "#f44934"
+    foreground = "#32302f"
     timeout = 10
 
 [urgency_normal]
-    background = "#11111b"
-    foreground = "#cdd6f4"
+    background = "#3c3836"
+    foreground = "#d8caa5"
     timeout = 10
 
 [urgency_critical]
-    background = "#eb6f92"
-    foreground = "#1f1d2e"
+    background = "#fb4934"
+    foreground = "#d8caa5"
     timeout = 1000
     format = "<b>%s</b>\n%b"

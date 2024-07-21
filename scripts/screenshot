@@ -1,4 +1,5 @@
-#! /bin/sh
+#!/bin/bash
+
 output='/home/verissimus/pictures/screenshots/%Y-%m-%d-%T-screenshot.png'
 
 saved_dir="/home/verissimu/pictures/screenshots"

@@ -1,4 +1,4 @@
-import = ["/home/verissimus/.config/alacritty/rose-pine.toml"]
+import = ["/home/verissimus/dotfiles/alacritty/gruv.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -45,7 +45,7 @@ save_to_clipboard = false
 program = "/usr/bin/zsh"
 
 [window]
-opacity = 0.95
+opacity = 0.99
 
 [window.class]
 general = "Alacritty"

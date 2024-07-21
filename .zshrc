@@ -18,6 +18,8 @@ export EDITOR=nvim
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="gruvbox"
+# SOLARIZED_THEME="dark"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -90,11 +92,10 @@ source $ZSH/oh-my-zsh.sh
 # Adds ~/.local/bin and subfolders to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
 
-# theme cattpuccin for fzf
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+--color=bg+:#171717,bg:#171717,spinner:#f5e0dc,hl:#7c6f64 \
+--color=fg:#d4be98,header:#d4be98,info:#d8a657,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#7c6f64,prompt:#cba6f7,hl+:#d3869b"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -126,7 +127,7 @@ alias vim="nvim"
 alias pn="pnpm"
 alias wifi-list="nmcli dev wifi list --rescan yes"
 # run neofetch at start
-#neofetch
+# neofetch
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

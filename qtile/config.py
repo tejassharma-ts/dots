@@ -104,7 +104,7 @@ keys = [
     # go full black screen
     Key([], "XF86ScreenSaver", lazy.spawn("xset dpms force off")),
     # open rofi calculator
-    Key([], "XF86Calculator", lazy.spawn("rofi -show calc")),
+    Key([], "XF86Calculator", lazy.spawn("rofi -show calc -modi calc -no-show-match -no-sort")),
     # Screenshot
     Key([], "Print", lazy.spawn("screenshot")),
     Key(["shift"], "Print", lazy.spawn("screenshot select")),
@@ -135,8 +135,8 @@ keys = [
     Key([], "XF86Search", lazy.spawn("firefox --new-window https://chat.openai.com")),
     # polybar toggle
     Key([mod, "shift"], "p", lazy.spawn("polybar-msg cmd toggle")),
-    # open draw.io
-    Key([mod, "shift"], "n", lazy.spawn("drawio")),
+   # open draw.io
+    Key([mod, "shift"], "n", lazy.spawn("google-chrome-stable --new-window https://app.eraser.io/workspace/aRkRaAz7e52QjUkVb2nC"))
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -217,8 +217,8 @@ keys.extend(
 layout_theme = {
     "border_width": 1,
     "margin": 10,
-    "border_focus": "#26233a",
-    "border_normal": "#1f1d2e",
+    "border_focus": "#32302f",
+    "border_normal": "#32302f",
 }
 
 full_screen_layout = {

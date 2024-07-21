@@ -15,12 +15,12 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg: #0d0c13;
-  bg-alt: #181825;
-  bg-selected: #191724;
+  bg: #282828;
+  bg-alt: #eee;
+  bg-selected: #3c3836;
 
-  fg: #cdd6f4;
-  fg-alt: #6e6a86;
+  fg: #d8caa5;
+  fg-alt: #d8caa5;
 
   border: 0;
   margin: 0;

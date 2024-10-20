@@ -11,6 +11,8 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# export NODE_OPTIONS=--max_old_space_size=4096
+export NODE_OPTIONS=--max_old_space_size=6096
 
 export EDITOR=nvim
 # Set name of the theme to load --- if set to "random", it will
@@ -91,6 +93,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Adds ~/.local/bin and subfolders to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#171717,bg:#171717,spinner:#f5e0dc,hl:#7c6f64 \
@@ -137,3 +140,11 @@ export PATH=$PATH:/home/verissimus/.spicetify
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/verissimus/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

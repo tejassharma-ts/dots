@@ -6,7 +6,7 @@ import os
 import subprocess
 
 mod = "mod4"
-terminal = "alacritty"
+terminal = "kitty"
 changebrightnessup = "changebrightness up"
 changebrightnessdown = "changebrightness down"
 start_rofi = "rofi -show drun"
@@ -27,6 +27,7 @@ def maximize_by_switching_layout(qtile):
     elif current_layout_name == "max":
         qtile.current_group.layout = "monadtall"
 
+
 keys = [
     # Toggle fullscreen mod
     Key(
@@ -36,7 +37,6 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc="toggle fullscreen",
     ),
-
     # keybinding for monand tall layout
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -104,7 +104,11 @@ keys = [
     # go full black screen
     Key([], "XF86ScreenSaver", lazy.spawn("xset dpms force off")),
     # open rofi calculator
-    Key([], "XF86Calculator", lazy.spawn("rofi -show calc -modi calc -no-show-match -no-sort")),
+    Key(
+        [],
+        "XF86Calculator",
+        lazy.spawn("rofi -show calc -modi calc -no-show-match -no-sort"),
+    ),
     # Screenshot
     Key([], "Print", lazy.spawn("screenshot")),
     Key(["shift"], "Print", lazy.spawn("screenshot select")),
@@ -131,15 +135,47 @@ keys = [
     # Switching back and fourth between workspaces
     Key([mod], "tab", lazy.function(latest_group)),
     # Open figma
-    Key([mod, "shift"], "f", lazy.spawn("firefox --new-window https://figma.com")),
-    Key([], "XF86Search", lazy.spawn("firefox --new-window https://chat.openai.com")),
+    Key([mod, "shift"], "f", lazy.spawn("zen-browser --new-window https://figma.com")),
+    Key(
+        [], "XF86Search", lazy.spawn("zen-browser --new-window https://chat.openai.com")
+    ),
     # polybar toggle
     Key([mod, "shift"], "p", lazy.spawn("polybar-msg cmd toggle")),
-   # open draw.io
-    Key([mod, "shift"], "n", lazy.spawn("google-chrome-stable --new-window https://app.eraser.io/workspace/aRkRaAz7e52QjUkVb2nC"))
+    # open draw.io
+    Key(
+        [mod, "shift"],
+        "n",
+        lazy.spawn(
+            "zen-browser --new-window https://app.eraser.io/workspace/aRkRaAz7e52QjUkVb2nC"
+        ),
+    ),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+groups = []
+
+group_names = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "bracketleft",
+    "bracketright",
+]
+
+for i in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[i],
+            # layout=group_layouts[i].lower(),
+            # label=group_labels[i],
+        )
+    )
 for i in groups:
     keys.extend(
         [
@@ -160,6 +196,13 @@ for i in groups:
         ]
     )
 
+Key(
+    [mod],
+    i.name,
+    lazy.group[i.name].toscreen(),
+    desc="Switch to group {}".format(i.name),
+),
+
 # Define scratchpads
 groups.append(
     ScratchPad(
@@ -169,8 +212,8 @@ groups.append(
                 "spotify", "spotify", width=0.8, height=0.8, x=0.1, y=0.1, opacity=1
             ),
             DropDown(
-                "firefox",
-                "firefox --new-window https://youtube.com",
+                "irefox",
+                "zen-browser --new-window https://youtube.com",
                 width=0.8,
                 height=0.8,
                 x=0.1,
@@ -188,7 +231,7 @@ groups.append(
             ),
             DropDown(
                 "term2",
-                "alacritty --class=scratch",
+                "alacritty =scratch",
                 width=0.8,
                 height=0.8,
                 x=0.1,
@@ -304,6 +347,7 @@ reconfigure_screens = True
 def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart")
     subprocess.Popen([home])
+
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?

@@ -68,7 +68,7 @@ skip_display=true
     timeout = 10
 
 [urgency_critical]
-    background = "#fb4934"
+    background = "#cc241d"
     foreground = "#d8caa5"
     timeout = 1000
     format = "<b>%s</b>\n%b"

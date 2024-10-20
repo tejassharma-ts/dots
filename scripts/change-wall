@@ -1,0 +1,16 @@
+#!/bin/bash
+
+selected=$(find ~/walls -mindepth 1 -type f | fzf)
+
+if [[ -d $selected ]]; then
+  echo "$selected is a directory"
+elif [[ -f $selected ]]; then
+  if feh --bg-fill "$selected"; then
+    exit 1
+  else
+    echo "Something went wrong"
+  fi
+else
+  echo "$selected is not valid"
+  exit 1
+fi

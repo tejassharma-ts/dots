@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Check if a prefix is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <prefix> [directory]"
+  exit 1
+fi
+
+# Get the prefix from the first argument
+PREFIX="$1"
+
+# Get the directory from the second argument or use the current directory
+DIR=${2:-.}
+
+# Counter to append to the prefix
+COUNTER=1
+
+# Navigate to the specified directory
+cd "$DIR" || exit 1
+
+# Iterate over all files in the directory
+for FILE in *; do
+  # Check if it's a regular file
+  if [ -f "$FILE" ]; then
+    # Extract the file extension
+    EXT="${FILE##*.}"
+
+    # Build the new file name
+    NEW_NAME="${PREFIX}-${COUNTER}"
+
+    # If the file has an extension, append it
+    if [ "$FILE" != "$EXT" ]; then
+      NEW_NAME="${NEW_NAME}.${EXT}"
+    fi
+
+    # Rename the file
+    mv "$FILE" "$NEW_NAME"
+
+    # Increment the counter
+    ((COUNTER++))
+  fi
+done
+
+echo "Files renamed successfully with prefix '$PREFIX'!"
